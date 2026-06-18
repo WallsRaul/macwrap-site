@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacWrap — Run Windows apps as native Mac apps</title>
+<meta name="description" content="Turn any Windows .exe into a native-feeling Mac app. Drag, drop, done. The honest compatibility layer for Apple Silicon.">
+<link rel="icon" type="image/png" href="macwrap-logo-256.png">
+<meta property="og:title" content="MacWrap — Run Windows apps as native Mac apps">
+<meta property="og:description" content="Drag a Windows .exe, get a real Mac .app. Honest compatibility, built for Apple Silicon.">
+<meta property="og:image" content="macwrap-logo-512.png">
+<style>
+  :root{
+    /* Paleta extraída del icono de MacWrap: índigo profundo, violeta, azul ventana, blanco */
+    --bg:#080b22; --bg2:#0f1438; --card:#151a44; --line:#272d62;
+    --txt:#eef0fb; --mut:#a7adce; --accent:#5babec; --accent2:#8b7fd9;
+    --green:#22c55e; --blue:#5babec; --amber:#f59e0b; --red:#ef4444;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+    background:
+      radial-gradient(1100px 620px at 50% -120px, #2a2470 0%, rgba(42,36,112,0) 60%),
+      linear-gradient(180deg, #0a0e2c 0%, var(--bg) 55%);
+    background-attachment:fixed;
+    color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  /* nav */
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+  .logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px}
+  .logo .mark{width:34px;height:34px;border-radius:9px;display:inline-block;
+    box-shadow:0 4px 16px rgba(91,171,236,.25)}
+  .hero .heroLogo{width:108px;height:108px;border-radius:24px;margin-bottom:26px;
+    box-shadow:0 18px 50px rgba(91,171,236,.28),0 4px 14px rgba(0,0,0,.4)}
+  nav .links a{color:var(--mut);margin-left:24px;font-size:14px}
+  nav .links a:hover{color:var(--txt)}
+  /* hero */
+  .hero{text-align:center;padding:70px 0 50px}
+  .badge{display:inline-block;font-size:13px;color:var(--accent2);
+    border:1px solid var(--line);border-radius:999px;padding:5px 14px;margin-bottom:24px;background:var(--card)}
+  h1{font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-1px;font-weight:800}
+  h1 .grad{background:linear-gradient(120deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:clamp(17px,2.4vw,21px);color:var(--mut);max-width:640px;margin:22px auto 0}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+  .btn{padding:14px 28px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:0;transition:.15s}
+  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04121f}
+  .btn.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn.ghost{background:var(--card);color:var(--txt);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--accent)}
+  .hint{font-size:13px;color:var(--mut);margin-top:14px}
+  /* flow */
+  .flow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:60px 0}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;width:240px;text-align:left}
+  .step .n{font-size:13px;color:var(--accent2);font-weight:700}
+  .step h3{font-size:17px;margin:8px 0 6px}
+  .step p{font-size:14px;color:var(--mut)}
+  /* section */
+  section{padding:56px 0}
+  .eyebrow{color:var(--accent2);font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+  h2{font-size:clamp(26px,4vw,38px);letter-spacing:-.5px;margin:8px 0 10px;font-weight:800}
+  .lead{color:var(--mut);max-width:620px;font-size:16px}
+  /* matrix */
+  .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .tier .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px}
+  .tier h4{font-size:16px;display:flex;align-items:center}
+  .tier ul{list-style:none;margin-top:12px;font-size:14px;color:var(--mut)}
+  .tier li{padding:3px 0}
+  .g{background:var(--green)} .b{background:var(--blue)} .a{background:var(--amber)} .r{background:var(--red)}
+  /* showcase */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:32px}
+  .scard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .scard .tag{font-size:12px;color:var(--accent2);font-weight:700}
+  .scard h4{font-size:18px;margin:6px 0}
+  .scard p{font-size:14px;color:var(--mut)}
+  /* honesty */
+  .honest{background:linear-gradient(135deg,var(--bg2),var(--card));border:1px solid var(--line);
+    border-radius:20px;padding:40px;text-align:center}
+  .honest h2{margin-bottom:10px}
+  /* waitlist */
+  .wl{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:44px;text-align:center}
+  .wl form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .wl input{padding:14px 18px;border-radius:12px;border:1px solid var(--line);background:var(--bg);
+    color:var(--txt);font-size:15px;width:300px;max-width:80vw}
+  .wl input:focus{outline:none;border-color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:36px 0;color:var(--mut);font-size:13px;text-align:center;margin-top:40px}
+  footer a{color:var(--blue)}
+  .disc{font-size:12px;color:#6b7280;max-width:680px;margin:14px auto 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="logo"><img class="mark" src="macwrap-logo-256.png" alt="MacWrap"> MacWrap</div>
+    <div class="links">
+      <a href="#how">How it works</a>
+      <a href="#matrix">Compatibility</a>
+      <a href="#showcase">Showcase</a>
+      <a href="#beta">Get the beta</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <img class="heroLogo" src="macwrap-logo-512.png" alt="MacWrap">
+    <br>
+    <span class="badge">◆ Free beta · Apple Silicon</span>
+    <h1>Run your <span class="grad">Windows apps</span><br>as native Mac apps.</h1>
+    <p class="sub">Drag a Windows <code>.exe</code> onto MacWrap and get a real <code>.app</code> back — its own icon, double-click to launch, no terminal, no setup. You'd never know there's Windows underneath.</p>
+    <div class="cta">
+      <a href="#beta"><button class="btn primary">Join the free beta</button></a>
+      <a href="#matrix"><button class="btn ghost">See what runs</button></a>
+    </div>
+    <p class="hint">Bring your own software. MacWrap wraps the apps <em>you</em> already own.</p>
+  </header>
+
+  <section id="how" style="padding-top:10px">
+    <div class="flow">
+      <div class="step"><div class="n">01</div><h3>Drop your .exe</h3><p>Any Windows installer or program. MacWrap analyzes it instantly.</p></div>
+      <div class="step"><div class="n">02</div><h3>We pick the recipe</h3><p>It detects what the app needs and applies the right compatibility layer automatically.</p></div>
+      <div class="step"><div class="n">03</div><h3>Get a native .app</h3><p>A real Mac app with the original icon. Drag it to Applications. Done.</p></div>
+    </div>
+  </section>
+
+  <section id="matrix">
+    <span class="eyebrow">Honest by design</span>
+    <h2>We tell you what works — before you commit.</h2>
+    <p class="lead">No compatibility layer runs <em>everything</em>, and anyone who says otherwise is lying. MacWrap analyzes each app and tells you which tier it lands in, up front.</p>
+    <div class="tiers">
+      <div class="tier"><h4><span class="dot g"></span>Runs great</h4>
+        <ul><li>Win32 / .NET Framework apps</li><li>GDI/GDI+ interfaces</li><li>Most legacy professional software</li></ul></div>
+      <div class="tier"><h4><span class="dot b"></span>Runs with a recipe</h4>
+        <ul><li>Needs runtimes / tweaks we apply automatically</li><li>.NET, Access DB, Direct2D editors</li></ul></div>
+      <div class="tier"><h4><span class="dot a"></span>Partial</h4>
+        <ul><li>Heavy Direct2D/Direct3D edge cases</li><li>Some features may be limited</li></ul></div>
+      <div class="tier"><h4><span class="dot r"></span>Not yet</h4>
+        <ul><li>Modern WinRT / kernel drivers</li><li>Online anti-cheat</li></ul></div>
+    </div>
+  </section>
+
+  <section id="showcase">
+    <span class="eyebrow">Already running on Mac</span>
+    <h2>From AAA games to niche pro tools.</h2>
+    <div class="cards">
+      <div class="scard"><div class="tag">GAMING</div><h4>The Witcher 3</h4><p>DX11 via Apple's Metal translation — renders and plays on Apple Silicon.</p></div>
+      <div class="scard"><div class="tag">ACCOUNTING</div><h4>Windows-only ERPs</h4><p>Legacy .NET + Access-database business suites, fully operational.</p></div>
+      <div class="scard"><div class="tag">TRADING</div><h4>Sierra Chart · AmiBroker</h4><p>Pro charting &amp; trading platforms with no Mac version — running natively-wrapped, charts and all.</p></div>
+      <div class="scard"><div class="tag">UTILITIES</div><h4>Notepad++ · 7-Zip · SumatraPDF · EmEditor</h4><p>Everyday Windows-only tools, one drag away.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="honest">
+      <span class="eyebrow">Why MacWrap</span>
+      <h2>More native than a virtual machine. Honest about its limits.</h2>
+      <p class="lead" style="margin:10px auto 0;text-align:center">No Parallels boot screen, no Windows desktop, no per-app guesswork. Each app becomes its own native bundle. And our compatibility engine is built on a patched, hardware-accelerated graphics stack we built ourselves — so things work that other layers can't.</p>
+    </div>
+  </section>
+
+  <section id="beta">
+    <div class="wl">
+      <span class="eyebrow">Free beta</span>
+      <h2>Be first to try it.</h2>
+      <p class="lead" style="margin:8px auto 0;text-align:center">Wrapping your own apps is free. Join the list and we'll send you the <code>.dmg</code> the moment the beta opens.</p>
+      <form id="wlform" onsubmit="return wlSubmit(event)">
+        <input type="email" id="wlemail" placeholder="you@email.com" required>
+        <button class="btn primary" type="submit">Get the beta</button>
+      </form>
+      <p class="hint" id="wlmsg"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>MacWrap runs on a modified build of <a href="https://www.winehq.org">Wine</a> (LGPL). Modified source: <a href="https://github.com/WallsRaul/macwrap-wine">github.com/WallsRaul/macwrap-wine</a>.<br>
+    Windows is a trademark of Microsoft. Apple, Mac and Apple Silicon are trademarks of Apple Inc. MacWrap is not affiliated with Microsoft or Apple.</p>
+    <p class="disc">MacWrap is a tool that packages software you already own and are licensed to use. It does not distribute third-party applications. Compatibility varies by app; the in-app analyzer shows the expected tier before you wrap.</p>
+    <p style="margin-top:18px">© 2026 MacWrap</p>
+  </footer>
+
+</div>
+<script>
+// Placeholder waitlist handler — swap action for Formspree/Buttondown/Mailchimp endpoint before launch.
+function wlSubmit(e){
+  e.preventDefault();
+  var email=document.getElementById('wlemail').value;
+  var msg=document.getElementById('wlmsg');
+  // TODO: POST to real endpoint (Formspree/Buttondown). For now, store locally + thank.
+  try{ var l=JSON.parse(localStorage.getItem('mw_waitlist')||'[]'); l.push({email:email,t:Date.now()}); localStorage.setItem('mw_waitlist',JSON.stringify(l)); }catch(_){}
+  msg.textContent="✓ You're on the list — we'll email "+email+" when the beta opens.";
+  document.getElementById('wlform').reset();
+  return false;
+}
+</script>
+</body>
+</html>
