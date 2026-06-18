@@ -109,10 +109,10 @@
     <h1>Run your <span class="grad">Windows apps</span><br>as native Mac apps.</h1>
     <p class="sub">Drag a Windows <code>.exe</code> onto MacWrap and get a real <code>.app</code> back — its own icon, double-click to launch, no terminal, no setup. You'd never know there's Windows underneath.</p>
     <div class="cta">
-      <a href="#beta"><button class="btn primary">Join the free beta</button></a>
+      <a href="https://github.com/WallsRaul/macwrap-site/releases/latest/download/MacWrap.dmg"><button class="btn primary">↓ Download for Mac</button></a>
       <a href="#matrix"><button class="btn ghost">See what runs</button></a>
     </div>
-    <p class="hint">Bring your own software. MacWrap wraps the apps <em>you</em> already own.</p>
+    <p class="hint">Free beta · Apple Silicon · Bring your own software. MacWrap wraps the apps <em>you</em> already own.</p>
   </header>
 
   <section id="how" style="padding-top:10px">
@@ -161,11 +161,18 @@
   <section id="beta">
     <div class="wl">
       <span class="eyebrow">Free beta</span>
-      <h2>Be first to try it.</h2>
-      <p class="lead" style="margin:8px auto 0;text-align:center">Wrapping your own apps is free. Join the list and we'll send you the <code>.dmg</code> the moment the beta opens.</p>
+      <h2>Download MacWrap.</h2>
+      <p class="lead" style="margin:8px auto 0;text-align:center">Wrapping your own apps is free. Apple Silicon Mac required.</p>
+      <div style="margin-top:24px">
+        <a href="https://github.com/WallsRaul/macwrap-site/releases/latest/download/MacWrap.dmg">
+          <button class="btn primary" style="font-size:16px;padding:16px 34px">↓ Download for Mac (.dmg)</button>
+        </a>
+      </div>
+      <p class="hint">First launch: right-click the app → Open (one-time macOS prompt). · <a href="faq.html" style="color:var(--blue)">Help</a></p>
+      <p class="lead" style="margin:30px auto 0;text-align:center;font-size:14px">Want updates &amp; new recipes in your inbox?</p>
       <form id="wlform" onsubmit="return wlSubmit(event)">
         <input type="email" id="wlemail" placeholder="you@email.com" required>
-        <button class="btn primary" type="submit">Get the beta</button>
+        <button class="btn ghost" type="submit">Notify me</button>
       </form>
       <p class="hint" id="wlmsg"></p>
     </div>
