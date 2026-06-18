@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacWrap — Centro de ayuda</title>
+<meta name="description" content="Preguntas frecuentes y ayuda de MacWrap: compatibilidad, suscripción, solicitar recetas y soporte.">
+<link rel="icon" type="image/png" href="macwrap-logo-256.png">
+<style>
+  :root{
+    --bg:#080b22; --bg2:#0f1438; --card:#151a44; --line:#272d62;
+    --txt:#eef0fb; --mut:#a7adce; --accent:#5babec; --accent2:#8b7fd9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+    background:radial-gradient(1100px 620px at 50% -120px,#2a2470 0%,rgba(42,36,112,0) 60%),
+      linear-gradient(180deg,#0a0e2c 0%,var(--bg) 55%);background-attachment:fixed;
+    color:var(--txt);line-height:1.65;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:820px;margin:0 auto;padding:0 24px 80px}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+  .logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px}
+  .logo img{width:32px;height:32px;border-radius:8px}
+  nav .links a{color:var(--mut);margin-left:22px;font-size:14px}
+  h1{font-size:38px;letter-spacing:-1px;font-weight:800;margin:40px 0 8px}
+  .lead{color:var(--mut);font-size:17px;margin-bottom:30px}
+  h2{font-size:15px;text-transform:uppercase;letter-spacing:.5px;color:var(--accent2);
+    font-weight:700;margin:38px 0 6px}
+  .qa{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px;margin-top:14px}
+  .qa h3{font-size:17px;margin-bottom:6px}
+  .qa p{color:var(--mut);font-size:15px}
+  .qa p + p{margin-top:8px}
+  .tier{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;margin-right:4px}
+  .g{background:rgba(34,197,94,.18);color:#22c55e}
+  .b{background:rgba(91,171,236,.18);color:#5babec}
+  .a{background:rgba(245,158,11,.18);color:#f59e0b}
+  .r{background:rgba(239,68,68,.18);color:#ef4444}
+  .cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04121f;
+    display:inline-block;padding:12px 22px;border-radius:11px;font-weight:600;margin-top:10px}
+  .cta:hover{filter:brightness(1.08);text-decoration:none}
+  footer{border-top:1px solid var(--line);margin-top:50px;padding-top:26px;color:var(--mut);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <a class="logo" href="index.html"><img src="macwrap-logo-256.png" alt="MacWrap"> MacWrap</a>
+    <div class="links">
+      <a href="index.html#matrix">Compatibilidad</a>
+      <a href="index.html#beta">Descargar</a>
+    </div>
+  </nav>
+
+  <h1>Centro de ayuda</h1>
+  <p class="lead">Lo esencial para empezar con MacWrap. ¿No encuentras tu respuesta? Escríbenos (abajo).</p>
+
+  <h2>Lo básico</h2>
+
+  <div class="qa">
+    <h3>¿Qué es MacWrap?</h3>
+    <p>Una app de macOS que convierte programas de Windows (<code>.exe</code>) en apps nativas de Mac: icono propio, doble clic, sin terminal. Por debajo usa una capa de compatibilidad (Wine), pero tú no la ves.</p>
+  </div>
+
+  <div class="qa">
+    <h3>¿Es legal y seguro?</h3>
+    <p>Sí. MacWrap envuelve <strong>el software que tú ya tienes y estás autorizado a usar</strong> — no distribuimos apps de terceros. Tus archivos nunca salen de tu Mac; el empaquetado ocurre en local.</p>
+  </div>
+
+  <div class="qa">
+    <h3>¿Por qué algunas apps no funcionan?</h3>
+    <p>Ninguna capa de compatibilidad corre <em>todo</em>, y quien diga lo contrario miente. Por eso MacWrap analiza cada app y te dice su nivel <strong>antes</strong>:</p>
+    <p>
+      <span class="tier g">Funciona</span> Win32/.NET clásico/GDI ·
+      <span class="tier b">Con receta</span> necesita ajustes que aplicamos ·
+      <span class="tier a">Parcial</span> Direct2D/3D intensivo ·
+      <span class="tier r">Aún no</span> WinRT moderno, drivers, anti-cheat
+    </p>
+  </div>
+
+  <h2>Gratis y Premium</h2>
+
+  <div class="qa">
+    <h3>¿Qué incluye el plan gratuito?</h3>
+    <p>Envolver cualquier <code>.exe</code> en una app nativa, con la compatibilidad genérica (que ya cubre la mayoría del software clásico) y el análisis honesto de compatibilidad. Gratis para siempre.</p>
+  </div>
+
+  <div class="qa">
+    <h3>¿Qué desbloquea Premium?</h3>
+    <p>Las <strong>recetas curadas auto-aplicadas</strong> (que hacen funcionar el software difícil), sus <strong>actualizaciones</strong> (para que siga funcionando cuando la app cambia) y soporte. Es una suscripción al servicio completo, no a una app concreta.</p>
+  </div>
+
+  <div class="qa">
+    <h3>¿Cómo me suscribo o cancelo?</h3>
+    <p>Desde la app: <strong>⚙️ → Suscríbete a Premium</strong>. El pago lo procesa Lemon Squeezy. Puedes cancelar cuando quieras; mantienes el acceso hasta el final del periodo pagado.</p>
+  </div>
+
+  <h2>Recetas</h2>
+
+  <div class="qa">
+    <h3>¿Cómo pido una receta para mi app?</h3>
+    <p>En la app: <strong>⚙️ → Solicitar una receta</strong>. Las apps más solicitadas son las que preparamos primero — tu petición marca nuestra hoja de ruta.</p>
+  </div>
+
+  <div class="qa">
+    <h3>¿Y si mi app no se puede hacer funcionar?</h3>
+    <p>Te lo decimos con honestidad. Algunas apps (WinRT moderno, anti-cheat, drivers) no son posibles hoy con la tecnología disponible — las marcamos <span class="tier r">Aún no</span> y te avisamos si eso cambia. Como Premium es una suscripción al catálogo completo, sigues teniendo el resto de recetas.</p>
+  </div>
+
+  <h2>Primeros pasos</h2>
+
+  <div class="qa">
+    <h3>Al abrir una app envuelta, macOS me avisa</h3>
+    <p>La primera vez, haz <strong>clic derecho sobre la app → Abrir</strong> (en lugar de doble clic). Es el aviso normal de macOS para apps fuera de la App Store; solo ocurre una vez.</p>
+  </div>
+
+  <h2>Soporte</h2>
+
+  <div class="qa">
+    <h3>¿Cómo contacto si necesito ayuda?</h3>
+    <p>Primero, busca aquí o en el análisis de compatibilidad de la app — resuelve la mayoría de dudas al instante. Si necesitas más, escríbenos por email y respondemos en 2-3 días laborables.</p>
+    <a class="cta" href="mailto:raulparedes2402@gmail.com?subject=Soporte%20MacWrap">Escribir a soporte</a>
+  </div>
+
+  <footer>
+    MacWrap usa una build modificada de <a href="https://github.com/WallsRaul/macwrap-wine">Wine</a> (LGPL).
+    Windows es marca de Microsoft; Apple/Mac de Apple Inc. MacWrap no está afiliada a ninguna.
+    · <a href="index.html">Inicio</a>
+  </footer>
+
+</div>
+</body>
+</html>
