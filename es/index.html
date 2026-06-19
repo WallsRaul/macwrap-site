@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MacWrap — Ejecuta apps de Windows como apps nativas de Mac</title>
+<meta name="description" content="Convierte cualquier .exe de Windows en una app de Mac con sensación nativa. Arrastra, suelta, listo. La capa de compatibilidad honesta para Apple Silicon.">
+<link rel="icon" type="image/png" href="../macwrap-logo-256.png">
+<meta property="og:title" content="MacWrap — Ejecuta apps de Windows como apps nativas de Mac">
+<meta property="og:description" content="Arrastra un .exe de Windows y obtén una .app real de Mac. Compatibilidad honesta, hecha para Apple Silicon.">
+<meta property="og:image" content="../macwrap-logo-512.png">
+<style>
+  :root{
+    --bg:#080b22; --bg2:#0f1438; --card:#151a44; --line:#272d62;
+    --txt:#eef0fb; --mut:#a7adce; --accent:#5babec; --accent2:#8b7fd9;
+    --green:#22c55e; --blue:#5babec; --amber:#f59e0b; --red:#ef4444;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;
+    background:
+      radial-gradient(1100px 620px at 50% -120px, #2a2470 0%, rgba(42,36,112,0) 60%),
+      linear-gradient(180deg, #0a0e2c 0%, var(--bg) 55%);
+    background-attachment:fixed;
+    color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+  .logo{display:flex;align-items:center;gap:11px;font-weight:700;font-size:19px}
+  .logo .mark{width:34px;height:34px;border-radius:9px;display:inline-block;
+    box-shadow:0 4px 16px rgba(91,171,236,.25)}
+  .hero .heroLogo{width:108px;height:108px;border-radius:24px;margin-bottom:26px;
+    box-shadow:0 18px 50px rgba(91,171,236,.28),0 4px 14px rgba(0,0,0,.4)}
+  nav .links a{color:var(--mut);margin-left:24px;font-size:14px}
+  nav .links a:hover{color:var(--txt)}
+  .lang{border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--accent2)!important}
+  .hero{text-align:center;padding:70px 0 50px}
+  .badge{display:inline-block;font-size:13px;color:var(--accent2);
+    border:1px solid var(--line);border-radius:999px;padding:5px 14px;margin-bottom:24px;background:var(--card)}
+  h1{font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-1px;font-weight:800}
+  h1 .grad{background:linear-gradient(120deg,var(--accent2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{font-size:clamp(17px,2.4vw,21px);color:var(--mut);max-width:640px;margin:22px auto 0}
+  .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+  .btn{padding:14px 28px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;border:0;transition:.15s}
+  .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04121f}
+  .btn.primary:hover{filter:brightness(1.08);transform:translateY(-1px)}
+  .btn.ghost{background:var(--card);color:var(--txt);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--accent)}
+  .hint{font-size:13px;color:var(--mut);margin-top:14px}
+  .flow{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;margin:60px 0}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;width:240px;text-align:left}
+  .step .n{font-size:13px;color:var(--accent2);font-weight:700}
+  .step h3{font-size:17px;margin:8px 0 6px}
+  .step p{font-size:14px;color:var(--mut)}
+  section{padding:56px 0}
+  .eyebrow{color:var(--accent2);font-size:13px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+  h2{font-size:clamp(26px,4vw,38px);letter-spacing:-.5px;margin:8px 0 10px;font-weight:800}
+  .lead{color:var(--mut);max-width:620px;font-size:16px}
+  .tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .tier .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px}
+  .tier h4{font-size:16px;display:flex;align-items:center}
+  .tier ul{list-style:none;margin-top:12px;font-size:14px;color:var(--mut)}
+  .tier li{padding:3px 0}
+  .g{background:var(--green)} .b{background:var(--blue)} .a{background:var(--amber)} .r{background:var(--red)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:32px}
+  .scard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .scard .tag{font-size:12px;color:var(--accent2);font-weight:700}
+  .scard h4{font-size:18px;margin:6px 0}
+  .scard p{font-size:14px;color:var(--mut)}
+  .honest{background:linear-gradient(135deg,var(--bg2),var(--card));border:1px solid var(--line);
+    border-radius:20px;padding:40px;text-align:center}
+  .honest h2{margin-bottom:10px}
+  .wl{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:44px;text-align:center}
+  .wl form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .wl input{padding:14px 18px;border-radius:12px;border:1px solid var(--line);background:var(--bg);
+    color:var(--txt);font-size:15px;width:300px;max-width:80vw}
+  .wl input:focus{outline:none;border-color:var(--accent)}
+  footer{border-top:1px solid var(--line);padding:36px 0;color:var(--mut);font-size:13px;text-align:center;margin-top:40px}
+  footer a{color:var(--blue)}
+  .disc{font-size:12px;color:#6b7280;max-width:680px;margin:14px auto 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav>
+    <div class="logo"><img class="mark" src="../macwrap-logo-256.png" alt="MacWrap"> MacWrap</div>
+    <div class="links">
+      <a href="#how">Cómo funciona</a>
+      <a href="#matrix">Compatibilidad</a>
+      <a href="#showcase">Ejemplos</a>
+      <a href="#beta">Descargar</a>
+      <a href="faq.html">Ayuda</a>
+      <a class="lang" href="../">EN</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <img class="heroLogo" src="../macwrap-logo-512.png" alt="MacWrap">
+    <br>
+    <span class="badge">◆ Beta gratis · Apple Silicon</span>
+    <h1>Ejecuta tus <span class="grad">apps de Windows</span><br>como apps nativas de Mac.</h1>
+    <p class="sub">Arrastra un <code>.exe</code> de Windows a MacWrap y recibe una <code>.app</code> real — con su propio icono, doble clic para abrir, sin terminal, sin configurar nada. Ni notarías que hay Windows debajo.</p>
+    <div class="cta">
+      <a href="https://github.com/WallsRaul/macwrap-site/releases/latest/download/MacWrap.dmg"><button class="btn primary">↓ Descargar para Mac</button></a>
+      <a href="#matrix"><button class="btn ghost">Ver qué funciona</button></a>
+    </div>
+    <p class="hint">Beta gratis · Apple Silicon · Trae tu propio software. MacWrap envuelve las apps que <em>tú</em> ya tienes.</p>
+  </header>
+
+  <section id="how" style="padding-top:10px">
+    <div class="flow">
+      <div class="step"><div class="n">01</div><h3>Suelta tu .exe</h3><p>Cualquier instalador o programa de Windows. MacWrap lo analiza al instante.</p></div>
+      <div class="step"><div class="n">02</div><h3>Elegimos la receta</h3><p>Detecta lo que la app necesita y aplica la capa de compatibilidad correcta automáticamente.</p></div>
+      <div class="step"><div class="n">03</div><h3>Obtienes una .app nativa</h3><p>Una app de Mac real con su icono original. Arrástrala a Aplicaciones. Listo.</p></div>
+    </div>
+  </section>
+
+  <section id="matrix">
+    <span class="eyebrow">Honesto por diseño</span>
+    <h2>Te decimos qué funciona — antes de que te comprometas.</h2>
+    <p class="lead">Ninguna capa de compatibilidad ejecuta <em>todo</em>, y quien diga lo contrario miente. MacWrap analiza cada app y te dice en qué nivel cae, por adelantado.</p>
+    <div class="tiers">
+      <div class="tier"><h4><span class="dot g"></span>Funciona perfecto</h4>
+        <ul><li>Apps Win32 / .NET Framework</li><li>Interfaces GDI/GDI+</li><li>La mayoría del software profesional clásico</li></ul></div>
+      <div class="tier"><h4><span class="dot b"></span>Funciona con receta</h4>
+        <ul><li>Necesita runtimes / ajustes que aplicamos solos</li><li>.NET, bases Access, editores Direct2D</li></ul></div>
+      <div class="tier"><h4><span class="dot a"></span>Parcial</h4>
+        <ul><li>Casos límite de Direct2D/Direct3D intensivo</li><li>Algunas funciones pueden quedar limitadas</li></ul></div>
+      <div class="tier"><h4><span class="dot r"></span>Todavía no</h4>
+        <ul><li>WinRT moderno / drivers de kernel</li><li>Anti-cheat online</li></ul></div>
+    </div>
+  </section>
+
+  <section id="showcase">
+    <span class="eyebrow">Ya funcionando en Mac</span>
+    <h2>Desde juegos AAA hasta herramientas pro de nicho.</h2>
+    <div class="cards">
+      <div class="scard"><div class="tag">GAMING</div><h4>The Witcher 3</h4><p>DX11 vía la traducción Metal de Apple — renderiza y se juega en Apple Silicon.</p></div>
+      <div class="scard"><div class="tag">CONTABILIDAD</div><h4>ERPs solo para Windows</h4><p>Suites de gestión .NET + base de datos Access heredadas, totalmente operativas.</p></div>
+      <div class="scard"><div class="tag">TRADING</div><h4>Sierra Chart · AmiBroker</h4><p>Plataformas pro de gráficos y trading sin versión Mac — envueltas y funcionando, gráficos incluidos.</p></div>
+      <div class="scard"><div class="tag">UTILIDADES</div><h4>Notepad++ · 7-Zip · SumatraPDF · EmEditor</h4><p>Herramientas de Windows del día a día, a un arrastre de distancia.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="honest">
+      <span class="eyebrow">Por qué MacWrap</span>
+      <h2>Más nativo que una máquina virtual. Honesto con sus límites.</h2>
+      <p class="lead" style="margin:10px auto 0;text-align:center">Sin pantalla de arranque de Parallels, sin escritorio de Windows, sin adivinar app por app. Cada app se convierte en su propio paquete nativo. Y nuestro motor de compatibilidad usa una pila gráfica parcheada y acelerada por hardware que construimos nosotros — por eso funcionan cosas que otras capas no pueden.</p>
+    </div>
+  </section>
+
+  <section id="beta">
+    <div class="wl">
+      <span class="eyebrow">Beta gratis</span>
+      <h2>Descarga MacWrap.</h2>
+      <p class="lead" style="margin:8px auto 0;text-align:center">Envolver tus propias apps es gratis. Requiere un Mac con Apple Silicon.</p>
+      <div style="margin-top:24px">
+        <a href="https://github.com/WallsRaul/macwrap-site/releases/latest/download/MacWrap.dmg">
+          <button class="btn primary" style="font-size:16px;padding:16px 34px">↓ Descargar para Mac (.dmg)</button>
+        </a>
+      </div>
+      <p class="hint">Primera apertura: clic derecho en la app → Abrir (aviso único de macOS). · <a href="faq.html" style="color:var(--blue)">Ayuda</a></p>
+      <p class="lead" style="margin:30px auto 0;text-align:center;font-size:14px">¿Quieres novedades y recetas nuevas en tu correo?</p>
+      <form id="wlform" onsubmit="return wlSubmit(event)">
+        <input type="email" id="wlemail" placeholder="tu@email.com" required>
+        <button class="btn ghost" type="submit">Avísame</button>
+      </form>
+      <p class="hint" id="wlmsg"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>MacWrap funciona sobre una versión modificada de <a href="https://www.winehq.org">Wine</a> (LGPL). Código fuente modificado: <a href="https://github.com/WallsRaul/macwrap-wine">github.com/WallsRaul/macwrap-wine</a>.<br>
+    Windows es una marca de Microsoft. Apple, Mac y Apple Silicon son marcas de Apple Inc. MacWrap no está afiliado a Microsoft ni a Apple.</p>
+    <p class="disc">MacWrap es una herramienta que empaqueta software que ya posees y tienes licencia para usar. No distribuye aplicaciones de terceros. La compatibilidad varía según la app; el analizador integrado muestra el nivel esperado antes de envolverla.</p>
+    <p style="margin-top:18px">© 2026 MacWrap</p>
+  </footer>
+
+</div>
+<script>
+function wlSubmit(e){
+  e.preventDefault();
+  var email=document.getElementById('wlemail').value;
+  var msg=document.getElementById('wlmsg');
+  try{ var l=JSON.parse(localStorage.getItem('mw_waitlist')||'[]'); l.push({email:email,t:Date.now()}); localStorage.setItem('mw_waitlist',JSON.stringify(l)); }catch(_){}
+  msg.textContent="✓ Estás en la lista — te escribiremos a "+email+" con las novedades.";
+  document.getElementById('wlform').reset();
+  return false;
+}
+</script>
+</body>
+</html>
