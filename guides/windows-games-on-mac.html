@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to Play Windows Games on Mac (Apple Silicon, 2026) | MacWrap</title>
+<meta name="description" content="Play Windows-only games on your Apple Silicon Mac using Apple's Game Porting Toolkit and D3DMetal. Learn which games work, which don't (anti-cheat), and how to wrap a game into a Mac app.">
+<link rel="canonical" href="https://macwrap.app/guides/windows-games-on-mac.html">
+<link rel="icon" type="image/png" href="../macwrap-logo-256.png">
+<meta property="og:title" content="How to Play Windows Games on Mac (Apple Silicon)"><meta property="og:description" content="Play Windows-only games on your Apple Silicon Mac using Apple's Game Porting Toolkit and D3DMetal. Learn which games work, which don't (anti-cheat), and how to wrap a game into a Mac app."><meta property="og:type" content="article">
+<style>
+  :root{--bg:#080b22;--card:#151a44;--line:#272d62;--txt:#eef0fb;--mut:#a7adce;--accent:#5babec;--accent2:#8b7fd9}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;background:radial-gradient(1100px 620px at 50% -120px,#2a2470 0%,rgba(42,36,112,0) 60%),linear-gradient(180deg,#0a0e2c 0%,var(--bg) 55%);background-attachment:fixed;color:var(--txt);line-height:1.7;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px 80px}
+  nav{display:flex;align-items:center;gap:11px;padding:22px 0;font-weight:700}nav img{width:30px;height:30px;border-radius:8px}
+  h1{font-size:33px;line-height:1.15;letter-spacing:-.5px;font-weight:800;margin:30px 0 6px}
+  h2{font-size:22px;font-weight:700;margin:36px 0 10px}h3{font-size:18px;font-weight:700;margin:22px 0 6px}
+  p{color:#cdd2ee;margin:12px 0}.meta{color:var(--mut);font-size:14px;margin-bottom:8px}
+  ul,ol{color:#cdd2ee;margin:12px 0 12px 22px}li{padding:3px 0}
+  .cta{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#04121f;display:inline-block;padding:13px 26px;border-radius:11px;font-weight:600;margin:18px 0}.cta:hover{filter:brightness(1.08);text-decoration:none}
+  strong{color:#fff}footer{border-top:1px solid var(--line);margin-top:50px;padding-top:24px;color:var(--mut);font-size:13px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"How to Play Windows Games on Mac (Apple Silicon)","description":"Play Windows-only games on your Apple Silicon Mac using Apple's Game Porting Toolkit and D3DMetal. Learn which games work, which don't (anti-cheat), and how to wrap a game into a Mac app.","publisher":{"@type":"Organization","name":"MacWrap"},"mainEntityOfPage":"https://macwrap.app/guides/windows-games-on-mac.html"}</script>
+</head>
+<body><div class="wrap">
+<nav><a href="../"><img src="../macwrap-logo-256.png" alt="MacWrap"> MacWrap</a></nav>
+<h1>How to Play Windows Games on Mac (Apple Silicon)</h1>
+<p class="meta">Updated 2026 · M1/M2/M3/M4 Macs</p>
+<p>Mac gaming changed when Apple released the <strong>Game Porting Toolkit</strong>, which translates Windows <strong>DirectX 11 and 12</strong> to Apple's Metal graphics. Combined with Wine, it lets Apple Silicon Macs run many Windows-only games that never got a Mac port — including AAA titles. This guide covers what works, what doesn't, and how to turn a game into a Mac app you can double-click.</p>
+<h2>How games run on Apple Silicon now</h2>
+<p>Apple's <strong>D3DMetal</strong> layer converts DirectX 12 draw calls to Metal in real time on the Mac GPU. A Windows game's <code>.exe</code> runs through Wine, its graphics go through D3DMetal, and you see the game render natively — no Windows, no Boot Camp.</p>
+<h2>Which Windows games work on Mac?</h2>
+<ul>
+<li><strong>Works well:</strong> single-player DirectX 11/12 games without anti-cheat — The Witcher 3, Control, A Plague Tale, many GOG DRM-free titles.</li>
+<li><strong>Risky:</strong> games with online anti-cheat in single-player (sometimes work offline).</li>
+<li><strong>Doesn't work:</strong> online games with kernel anti-cheat (Fortnite, Valorant, PUBG) — a technical limit of compatibility layers, not a fixable setting. Also games that require AVX2.</li>
+</ul>
+<h2>Turn a Windows game into a Mac app</h2>
+<p><a href="../">MacWrap</a> wraps a game's <code>.exe</code> into a native <code>.app</code> with the game's icon, using the Game Porting Toolkit and D3DMetal automatically. You double-click to play — no command line.</p>
+<ol>
+<li>Download <a href="../#beta">MacWrap</a> (Apple Silicon required).</li>
+<li>Install your game (e.g. a GOG DRM-free installer) and point MacWrap at the game's .exe.</li>
+<li>MacWrap builds a playable .app with the correct graphics recipe.</li>
+</ol>
+<h2>FAQ</h2>
+<h3>Are free games supported?</h3>
+<p>Yes — DRM-free free games from GOG and free weekly games from the Epic Games Store work the same way. Both DirectX games and Electron/WebGL games are supported.</p>
+<h3>Why won't my online game launch?</h3>
+<p>Kernel-level anti-cheat hooks into Windows internals that don't exist under a compatibility layer. There is no workaround; this is the one hard limit of Mac gaming via translation.</p>
+<a class="cta" href="../#beta">↓ Download MacWrap (free beta)</a>
+<footer>Related: <a href="run-windows-apps-on-mac.html">Run Windows apps on Mac</a> · <a href="open-exe-files-mac.html">Open .exe files on Mac</a> · <a href="../faq.html">Help</a></footer>
+</div></body></html>
