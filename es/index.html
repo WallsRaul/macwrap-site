@@ -96,6 +96,8 @@
       <a href="#showcase">Ejemplos</a>
       <a href="#epic">Gaming</a>
       <a href="#beta">Descargar</a>
+      <a href="#request">Pedir una app</a>
+      <a href="#support">Donar</a>
       <a href="faq.html">Ayuda</a>
       <a class="lang" href="../">EN</a>
     </div>
@@ -188,6 +190,35 @@
     </div>
   </section>
 
+  <section id="request">
+    <div class="wl">
+      <span class="eyebrow">Dinos qué necesitas</span>
+      <h2>¿Qué programa de Windows quieres en tu Mac?</h2>
+      <p class="lead" style="margin:8px auto 0;text-align:center">¿No ves tu programa? Dínoslo. Cada petición nos ayuda a priorizar la próxima receta — y te avisamos si conseguimos que funcione.</p>
+      <form id="reqform" onsubmit="return reqSubmit(event)" style="margin-top:20px">
+        <input type="text" id="reqapp" placeholder="Nombre de la app (ej. ContaSOL)" required style="background:#11131a;border:1px solid #2a2e3a;color:#e8eaf0;padding:13px 15px;border-radius:10px;font-size:15px;min-width:260px;max-width:90vw">
+        <input type="email" id="reqemail" placeholder="tu@email.com (opcional)" style="background:#11131a;border:1px solid #2a2e3a;color:#e8eaf0;padding:13px 15px;border-radius:10px;font-size:15px;min-width:220px;max-width:90vw">
+        <button class="btn primary" type="submit">Pedirla</button>
+      </form>
+      <p class="hint" id="reqmsg"></p>
+    </div>
+  </section>
+
+  <section id="support">
+    <div class="honest">
+      <span class="eyebrow">Apoya el proyecto</span>
+      <h2>Hecho por una sola persona. Ayúdame a seguir.</h2>
+      <p class="lead" style="margin:12px auto 0;text-align:center">MacWrap es gratis y lo desarrolla una sola persona. Cada receta — conseguir que una app de Windows difícil por fin corra en Mac — son horas de trabajo profundo. Si MacWrap te ahorró comprar un PC con Windows o una máquina virtual cara, una pequeña donación mantiene el proyecto vivo y la siguiente app en camino.</p>
+      <div class="cta" style="justify-content:center;margin-top:24px">
+        <!-- TODO: pega el link "buy" de tu producto "pay what you want" de Lemon Squeezy -->
+        <a href="https://macwrap.lemonsqueezy.com/checkout/buy/675b04d0-2520-4bc6-8df1-1e3cc1edc191" target="_blank" rel="noopener"><button class="btn primary" style="font-size:16px;padding:15px 32px">♥ Donar (tarjeta / Apple Pay)</button></a>
+        <!-- TODO: pon tu enlace real de PayPal.me -->
+        <a href="https://www.paypal.me/WallsRaul" target="_blank" rel="noopener"><button class="btn ghost" style="font-size:16px;padding:15px 32px">Donar con PayPal</button></a>
+      </div>
+      <p class="hint" style="text-align:center">100% opcional. MacWrap sigue siendo gratis igualmente. Gracias por apoyar un proyecto independiente. 🙏</p>
+    </div>
+  </section>
+
   <footer>
     <p>MacWrap funciona sobre una versión modificada de <a href="https://www.winehq.org">Wine</a> (LGPL). Código fuente modificado: <a href="https://github.com/WallsRaul/macwrap-wine">github.com/WallsRaul/macwrap-wine</a>.<br>
     Windows es una marca de Microsoft. Apple, Mac y Apple Silicon son marcas de Apple Inc. MacWrap no está afiliado a Microsoft ni a Apple.</p>
@@ -205,6 +236,26 @@ function wlSubmit(e){
   try{ var l=JSON.parse(localStorage.getItem('mw_waitlist')||'[]'); l.push({email:email,t:Date.now()}); localStorage.setItem('mw_waitlist',JSON.stringify(l)); }catch(_){}
   msg.textContent="✓ Estás en la lista — te escribiremos a "+email+" con las novedades.";
   document.getElementById('wlform').reset();
+  return false;
+}
+
+const REQUEST_ENDPOINT = "";
+function reqSubmit(e){
+  e.preventDefault();
+  var app=document.getElementById('reqapp').value.trim();
+  var email=document.getElementById('reqemail').value.trim();
+  var msg=document.getElementById('reqmsg');
+  if(!app) return false;
+  try{ var l=JSON.parse(localStorage.getItem('mw_requests')||'[]'); l.push({app:app,email:email,t:Date.now()}); localStorage.setItem('mw_requests',JSON.stringify(l)); }catch(_){}
+  if(REQUEST_ENDPOINT){
+    fetch(REQUEST_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({app:app,email:email})}).catch(function(){});
+    msg.textContent="\u2713 \u00a1Gracias! Registramos tu petici\u00f3n de "+app+". Te escribiremos si lo conseguimos.";
+  } else {
+    var body=encodeURIComponent("App que quiero en Mac: "+app+"\nMi email: "+(email||"(no indicado)"));
+    window.location.href="mailto:support@macwrap.app?subject="+encodeURIComponent("Petici\u00f3n MacWrap: "+app)+"&body="+body;
+    msg.textContent="Abriendo tu correo para enviar la petici\u00f3n de "+app+"\u2026";
+  }
+  document.getElementById('reqform').reset();
   return false;
 }
 </script>

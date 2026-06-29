@@ -108,7 +108,8 @@
       <a href="#showcase">Showcase</a>
       <a href="#epic">Gaming</a>
       <a href="#beta">Get the beta</a>
-      <a href="#guides">Guides</a>
+      <a href="#request">Request an app</a>
+      <a href="#support">Donate</a>
       <a href="faq.html">Help</a>
       <a class="lang" href="es/">ES</a>
     </div>
@@ -201,6 +202,35 @@
     </div>
   </section>
 
+  <section id="request">
+    <div class="wl">
+      <span class="eyebrow">Tell us what you need</span>
+      <h2>Which Windows app do you want on your Mac?</h2>
+      <p class="lead" style="margin:8px auto 0;text-align:center">Don't see your program? Tell us. Every request helps us prioritize the next recipe — and we'll email you if we get it running.</p>
+      <form id="reqform" onsubmit="return reqSubmit(event)" style="margin-top:20px">
+        <input type="text" id="reqapp" placeholder="App name (e.g. QuickBooks Desktop)" required style="background:#11131a;border:1px solid #2a2e3a;color:#e8eaf0;padding:13px 15px;border-radius:10px;font-size:15px;min-width:260px;max-width:90vw">
+        <input type="email" id="reqemail" placeholder="you@email.com (optional)" style="background:#11131a;border:1px solid #2a2e3a;color:#e8eaf0;padding:13px 15px;border-radius:10px;font-size:15px;min-width:220px;max-width:90vw">
+        <button class="btn primary" type="submit">Request it</button>
+      </form>
+      <p class="hint" id="reqmsg"></p>
+    </div>
+  </section>
+
+  <section id="support">
+    <div class="honest">
+      <span class="eyebrow">Support the project</span>
+      <h2>Built by one developer. Keep it going.</h2>
+      <p class="lead" style="margin:12px auto 0;text-align:center">MacWrap is free to use and built by a single person. Every recipe — making a stubborn Windows app finally run on Mac — is hours of deep work. If MacWrap saved you from buying a Windows PC or a pricey VM, a small donation keeps the lights on and the next app coming.</p>
+      <div class="cta" style="justify-content:center;margin-top:24px">
+        <!-- TODO: pega el link "buy" de tu producto "pay what you want" de Lemon Squeezy -->
+        <a href="https://macwrap.lemonsqueezy.com/checkout/buy/675b04d0-2520-4bc6-8df1-1e3cc1edc191" target="_blank" rel="noopener"><button class="btn primary" style="font-size:16px;padding:15px 32px">♥ Donate (card / Apple Pay)</button></a>
+        <!-- TODO: pon tu enlace real de PayPal.me -->
+        <a href="https://www.paypal.me/WallsRaul" target="_blank" rel="noopener"><button class="btn ghost" style="font-size:16px;padding:15px 32px">Donate with PayPal</button></a>
+      </div>
+      <p class="hint" style="text-align:center">100% optional. MacWrap stays free either way. Thank you for backing an indie project. 🙏</p>
+    </div>
+  </section>
+
   <section id="guides">
     <span class="eyebrow">Guides</span>
     <h2>Running Windows software on Mac, explained</h2>
@@ -231,6 +261,28 @@ function wlSubmit(e){
   try{ var l=JSON.parse(localStorage.getItem('mw_waitlist')||'[]'); l.push({email:email,t:Date.now()}); localStorage.setItem('mw_waitlist',JSON.stringify(l)); }catch(_){}
   msg.textContent="✓ You're on the list — we'll email "+email+" when the beta opens.";
   document.getElementById('wlform').reset();
+  return false;
+}
+
+// Pon aquí tu endpoint de Formspree (https://formspree.io/f/XXXX) para recibir las peticiones
+// por email automáticamente. Si lo dejas vacío, el formulario abre el correo del usuario.
+const REQUEST_ENDPOINT = "";
+function reqSubmit(e){
+  e.preventDefault();
+  var app=document.getElementById('reqapp').value.trim();
+  var email=document.getElementById('reqemail').value.trim();
+  var msg=document.getElementById('reqmsg');
+  if(!app) return false;
+  try{ var l=JSON.parse(localStorage.getItem('mw_requests')||'[]'); l.push({app:app,email:email,t:Date.now()}); localStorage.setItem('mw_requests',JSON.stringify(l)); }catch(_){}
+  if(REQUEST_ENDPOINT){
+    fetch(REQUEST_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify({app:app,email:email})}).catch(function(){});
+    msg.textContent="✓ Thanks! We logged your request for "+app+". We'll be in touch if we get it running.";
+  } else {
+    var body=encodeURIComponent("App I'd like to run on Mac: "+app+"\nMy email: "+(email||"(not provided)"));
+    window.location.href="mailto:support@macwrap.app?subject="+encodeURIComponent("MacWrap app request: "+app)+"&body="+body;
+    msg.textContent="Opening your email to send the request for "+app+"…";
+  }
+  document.getElementById('reqform').reset();
   return false;
 }
 </script>
