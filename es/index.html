@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MacWrap — Ejecuta apps de Windows como apps nativas de Mac</title>
-<meta name="description" content="Convierte cualquier .exe de Windows en una app de Mac con sensación nativa. Arrastra, suelta, listo. La capa de compatibilidad honesta para Apple Silicon.">
+<title>MacWrap: Ejecuta apps de Windows como apps nativas de Mac</title>
+<meta name="description" content="Convierte cualquier .exe de Windows en una app de Mac con sensación nativa. Arrastra, suelta, listo. La capa de compatibilidad que se arregla sola para Apple Silicon: diagnostica los fallos y los repara automáticamente, y ejecuta juegos desde Resident Evil 4 hasta The Witcher 3.">
 <link rel="icon" type="image/png" href="../macwrap-logo-256.png">
-<meta property="og:title" content="MacWrap — Ejecuta apps de Windows como apps nativas de Mac">
-<meta property="og:description" content="Arrastra un .exe de Windows y obtén una .app real de Mac. Compatibilidad honesta, hecha para Apple Silicon.">
+<meta property="og:title" content="MacWrap: Ejecuta apps de Windows y juegos como apps nativas de Mac">
+<meta property="og:description" content="Arrastra un .exe de Windows y obtén una .app real de Mac. El primer envoltorio que se arregla solo: diagnostica los fallos y aprende. Hecho para Apple Silicon.">
 <meta property="og:image" content="../macwrap-logo-512.png">
 <link rel="canonical" href="https://macwrap.app/es/">
 <link rel="alternate" hreflang="es" href="https://macwrap.app/es/">
@@ -127,6 +127,16 @@
     .stagger.in > *:nth-child(2){transition-delay:.08s} .stagger.in > *:nth-child(3){transition-delay:.16s} .stagger.in > *:nth-child(4){transition-delay:.24s}
     .tier .dot{animation:dotPulse 2.8s ease-out infinite}
     @keyframes dotPulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.30)}70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+    .btn.primary{animation:ctaGlow 3.6s ease-in-out infinite}
+    @keyframes ctaGlow{0%,100%{box-shadow:0 6px 20px rgba(91,171,236,.18)}50%{box-shadow:0 12px 38px rgba(139,127,217,.42)}}
+    #intelligence .scard{position:relative;overflow:hidden}
+    #intelligence .scard::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);
+      background-size:220% 100%;animation:edgeSweep 3.2s linear infinite}
+    @keyframes edgeSweep{to{background-position:220% 0}}
+    .eyebrow{background:linear-gradient(90deg,var(--accent2),var(--accent),var(--accent2));
+      background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;
+      animation:textShine 6s linear infinite}
   }
 </style>
 <script>
@@ -149,6 +159,7 @@ window.addEventListener('DOMContentLoaded',function(){
     <div class="logo"><img class="mark" src="../macwrap-logo-256.png" alt="MacWrap"> MacWrap</div>
     <div class="links">
       <a href="#how">Cómo funciona</a>
+      <a href="#intelligence">Aprende sola</a>
       <a href="#matrix">Compatibilidad</a>
       <a href="#showcase">Ejemplos</a>
       <a href="#epic">Gaming</a>
@@ -165,7 +176,7 @@ window.addEventListener('DOMContentLoaded',function(){
     <br>
     <span class="badge">◆ Beta gratis · Apple Silicon</span>
     <h1>Ejecuta tus <span class="grad">apps de Windows</span><br>como apps nativas de Mac.</h1>
-    <p class="sub">Arrastra un <code>.exe</code> de Windows a MacWrap y recibe una <code>.app</code> real — con su propio icono, doble clic para abrir, sin terminal, sin configurar nada. Ni notarías que hay Windows debajo.</p>
+    <p class="sub">Arrastra un <code>.exe</code> de Windows a MacWrap y recibe una <code>.app</code> real, con su propio icono, doble clic para abrir, sin terminal, sin configurar nada. Ni notarías que hay Windows debajo.</p>
     <div class="cta">
       <a href="https://github.com/WallsRaul/macwrap-site/releases/latest/download/MacWrap.dmg"><button class="btn primary">↓ Descargar para Mac</button></a>
       <a href="#matrix"><button class="btn ghost">Ver qué funciona</button></a>
@@ -175,15 +186,26 @@ window.addEventListener('DOMContentLoaded',function(){
 
   <section id="how" style="padding-top:10px">
     <div class="flow">
-      <div class="step"><div class="n">01</div><h3>Suelta tu .exe</h3><p>Cualquier instalador o programa de Windows. MacWrap lo analiza al instante.</p></div>
-      <div class="step"><div class="n">02</div><h3>Elegimos la receta</h3><p>Detecta lo que la app necesita y aplica la capa de compatibilidad correcta automáticamente.</p></div>
-      <div class="step"><div class="n">03</div><h3>Obtienes una .app nativa</h3><p>Una app de Mac real con su icono original. Arrástrala a Aplicaciones. Listo.</p></div>
+      <div class="step"><div class="n">01</div><h3>Suelta tu .exe</h3><p>Cualquier instalador, programa o juego de Windows. MacWrap lo analiza al instante.</p></div>
+      <div class="step"><div class="n">02</div><h3>Diagnostica y arregla</h3><p>MacWrap prueba la app, lee qué falla y aplica el arreglo correcto automáticamente, sin ajustes manuales.</p></div>
+      <div class="step"><div class="n">03</div><h3>Obtienes una .app nativa</h3><p>Una app de Mac real con su icono original. Doble clic para jugar. Listo.</p></div>
+    </div>
+  </section>
+
+  <section id="intelligence">
+    <span class="eyebrow">Nuevo · Aprende sola</span>
+    <h2>El primer envoltorio que <span class="grad">se arregla solo.</span></h2>
+    <p class="lead">Cuando una app falla, MacWrap no se rinde ni te deja atascado. Lee el fallo, reconoce el patrón y aplica el arreglo, automáticamente. Y cuando se topa con algo que nunca ha visto, una IA integrada diagnostica el problema y se lo enseña a todo el catálogo. Cada app que se arregla hace a MacWrap más listo para <em>todos</em>. Ninguna otra capa de compatibilidad hace esto.</p>
+    <div class="cards">
+      <div class="scard"><div class="tag">DIAGNOSTICA</div><h4>Lee el fallo</h4><p>MacWrap ejecuta la app, captura el error exacto y lo compara con una biblioteca creciente de problemas conocidos: runtimes que faltan, gráficos, crashes de pantalla completa, vídeos de intro que congelan y más.</p></div>
+      <div class="scard"><div class="tag">IA EN EL BUCLE</div><h4>Resuelve lo desconocido</h4><p>¿Un fallo totalmente nuevo? MacWrap le pregunta a su IA, que descubre la causa y el arreglo en segundos, el tipo de depuración que antes necesitaba un experto.</p></div>
+      <div class="scard"><div class="tag">SE HACE MÁS LISTO</div><h4>Gratis para el siguiente</h4><p>Cada arreglo que la IA descubre se guarda en el catálogo. El siguiente usuario con esa app se arregla al instante, gratis. Cuanto más se usa MacWrap, más sabe.</p></div>
     </div>
   </section>
 
   <section id="matrix">
     <span class="eyebrow">Honesto por diseño</span>
-    <h2>Te decimos qué funciona — antes de que te comprometas.</h2>
+    <h2>Te decimos qué funciona, antes de que te comprometas.</h2>
     <p class="lead">Ninguna capa de compatibilidad ejecuta <em>todo</em>, y quien diga lo contrario miente. MacWrap analiza cada app y te dice en qué nivel cae, por adelantado.</p>
     <div class="tiers">
       <div class="tier"><h4><span class="dot g"></span>Funciona perfecto</h4>
@@ -201,21 +223,21 @@ window.addEventListener('DOMContentLoaded',function(){
     <span class="eyebrow">Ya funcionando en Mac</span>
     <h2>Desde juegos AAA hasta herramientas pro de nicho.</h2>
     <div class="cards">
-      <div class="scard"><div class="tag">GAMING</div><h4>The Witcher 3</h4><p>DX11 vía la traducción Metal de Apple — renderiza y se juega en Apple Silicon.</p></div>
-      <div class="scard"><div class="tag">CONTABILIDAD</div><h4>ERPs solo para Windows</h4><p>Suites de gestión .NET + base de datos Access heredadas, totalmente operativas.</p></div>
-      <div class="scard"><div class="tag">TRADING</div><h4>Sierra Chart · AmiBroker</h4><p>Plataformas pro de gráficos y trading sin versión Mac — envueltas y funcionando, gráficos incluidos.</p></div>
+      <div class="scard"><div class="tag">JUEGOS AAA</div><h4>The Witcher 3 · Hogwarts Legacy</h4><p>Títulos DX11/DX12 modernos vía la traducción Metal de Apple, renderizando y jugándose en Apple Silicon.</p></div>
+      <div class="scard"><div class="tag">JUEGOS CLÁSICOS</div><h4>NFS Most Wanted · Resident Evil 4</h4><p>Juegos DirectX 9 de 32 bits que ni otras capas gratuitas consiguen arrancar, corriendo gracias a un arreglo de Wine que hicimos nosotros para Apple Silicon.</p></div>
+      <div class="scard"><div class="tag">TRADING Y PRO</div><h4>Sierra Chart · AmiBroker · ERPs</h4><p>Gráficos, trading y suites de gestión .NET + Access sin versión Mac, envueltos y funcionando, gráficos incluidos.</p></div>
       <div class="scard"><div class="tag">UTILIDADES</div><h4>Notepad++ · 7-Zip · SumatraPDF · EmEditor</h4><p>Herramientas de Windows del día a día, a un arrastre de distancia.</p></div>
     </div>
   </section>
 
   <section id="epic">
     <span class="eyebrow">Nuevo · Gaming</span>
-    <h2>Tu biblioteca de Epic Games — en tu Mac.</h2>
-    <p class="lead">Conecta tu cuenta de Epic y MacWrap trae tus juegos al Mac — incluidos los <strong>AAA gratis de cada semana</strong> de Epic. Descarga la versión Windows y la envuelve en una app jugable, con el Game Porting Toolkit de Apple. Los juegos de un jugador DX11/DX12 funcionan; los online con anti-cheat no — y te lo avisamos <em>antes</em> de descargar un solo byte.</p>
+    <h2>Tu biblioteca de Epic Games, en tu Mac.</h2>
+    <p class="lead">Conecta tu cuenta de Epic y MacWrap trae tus juegos al Mac, incluidos los <strong>AAA gratis de cada semana</strong> de Epic. Descarga la versión Windows y la envuelve en una app jugable, con el Game Porting Toolkit de Apple. Los juegos de un jugador DX11/DX12 funcionan; los online con anti-cheat no, y te lo avisamos <em>antes</em> de descargar un solo byte.</p>
     <div class="cards">
       <div class="scard"><div class="tag">JUEGAN</div><h4>AAA un jugador</h4><p>The Witcher 3, Hogwarts Legacy, GTA V (historia), A Plague Tale… juegos DX11/12 sin anti-cheat.</p></div>
-      <div class="scard"><div class="tag">GRATIS</div><h4>Regalos semanales</h4><p>Reclama los juegos gratis de Epic cada semana y juégalos en tu Mac — sin coste extra.</p></div>
-      <div class="scard"><div class="tag">HONESTO</div><h4>Anti-cheat avisado</h4><p>Fortnite y los títulos con anti-cheat online salen como "No jugable" — nunca gastamos tus datos en vano.</p></div>
+      <div class="scard"><div class="tag">GRATIS</div><h4>Regalos semanales</h4><p>Reclama los juegos gratis de Epic cada semana y juégalos en tu Mac, sin coste extra.</p></div>
+      <div class="scard"><div class="tag">HONESTO</div><h4>Anti-cheat avisado</h4><p>Fortnite y los títulos con anti-cheat online salen como "No jugable", nunca gastamos tus datos en vano.</p></div>
     </div>
   </section>
 
@@ -223,7 +245,7 @@ window.addEventListener('DOMContentLoaded',function(){
     <div class="honest">
       <span class="eyebrow">Por qué MacWrap</span>
       <h2>Más nativo que una máquina virtual. Honesto con sus límites.</h2>
-      <p class="lead" style="margin:10px auto 0;text-align:center">Sin pantalla de arranque de Parallels, sin escritorio de Windows, sin adivinar app por app. Cada app se convierte en su propio paquete nativo. Y nuestro motor de compatibilidad usa una pila gráfica parcheada y acelerada por hardware que construimos nosotros — por eso funcionan cosas que otras capas no pueden.</p>
+      <p class="lead" style="margin:10px auto 0;text-align:center">Sin pantalla de arranque de Parallels, sin escritorio de Windows, sin adivinar app por app. Cada app se convierte en su propio paquete nativo. Y nuestro motor de compatibilidad usa una pila gráfica parcheada y acelerada por hardware que construimos nosotros, por eso funcionan cosas que otras capas no pueden.</p>
     </div>
   </section>
 
@@ -251,7 +273,7 @@ window.addEventListener('DOMContentLoaded',function(){
     <div class="wl">
       <span class="eyebrow">Dinos qué necesitas</span>
       <h2>¿Qué programa de Windows quieres en tu Mac?</h2>
-      <p class="lead" style="margin:8px auto 0;text-align:center">¿No ves tu programa? Dínoslo. Cada petición nos ayuda a priorizar la próxima receta — y te avisamos si conseguimos que funcione.</p>
+      <p class="lead" style="margin:8px auto 0;text-align:center">¿No ves tu programa? Dínoslo. Cada petición nos ayuda a priorizar la próxima receta, y te avisamos si conseguimos que funcione.</p>
       <form id="reqform" onsubmit="return reqSubmit(event)" style="margin-top:20px">
         <input type="text" id="reqapp" placeholder="Nombre de la app (ej. ContaSOL)" required style="background:#11131a;border:1px solid #2a2e3a;color:#e8eaf0;padding:13px 15px;border-radius:10px;font-size:15px;min-width:260px;max-width:90vw">
         <input type="email" id="reqemail" placeholder="tu@email.com (opcional)" style="background:#11131a;border:1px solid #2a2e3a;color:#e8eaf0;padding:13px 15px;border-radius:10px;font-size:15px;min-width:220px;max-width:90vw">
@@ -265,7 +287,7 @@ window.addEventListener('DOMContentLoaded',function(){
     <div class="honest">
       <span class="eyebrow">Apoya el proyecto</span>
       <h2>Hecho por una sola persona. Ayúdame a seguir.</h2>
-      <p class="lead" style="margin:12px auto 0;text-align:center">MacWrap es gratis y lo desarrolla una sola persona. Cada receta — conseguir que una app de Windows difícil por fin corra en Mac — son horas de trabajo profundo. Si MacWrap te ahorró comprar un PC con Windows o una máquina virtual cara, una pequeña donación mantiene el proyecto vivo y la siguiente app en camino.</p>
+      <p class="lead" style="margin:12px auto 0;text-align:center">MacWrap es gratis y lo desarrolla una sola persona. Cada receta, conseguir que una app de Windows difícil por fin corra en Mac, son horas de trabajo profundo. Si MacWrap te ahorró comprar un PC con Windows o una máquina virtual cara, una pequeña donación mantiene el proyecto vivo y la siguiente app en camino.</p>
       <div class="cta" style="justify-content:center;margin-top:24px">
         <!-- TODO: pega el link "buy" de tu producto "pay what you want" de Lemon Squeezy -->
         <a href="https://macwrap.lemonsqueezy.com/checkout/buy/675b04d0-2520-4bc6-8df1-1e3cc1edc191" target="_blank" rel="noopener"><button class="btn primary" style="font-size:16px;padding:15px 32px">♥ Donar (tarjeta / Apple Pay)</button></a>
@@ -291,7 +313,7 @@ function wlSubmit(e){
   var email=document.getElementById('wlemail').value;
   var msg=document.getElementById('wlmsg');
   try{ var l=JSON.parse(localStorage.getItem('mw_waitlist')||'[]'); l.push({email:email,t:Date.now()}); localStorage.setItem('mw_waitlist',JSON.stringify(l)); }catch(_){}
-  msg.textContent="✓ Estás en la lista — te escribiremos a "+email+" con las novedades.";
+  msg.textContent="✓ Estás en la lista, te escribiremos a "+email+" con las novedades.";
   document.getElementById('wlform').reset();
   return false;
 }
