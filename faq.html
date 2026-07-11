@@ -145,8 +145,13 @@
   <h2>Getting started</h2>
 
   <div class="qa">
-    <h3>macOS warns me when I open a wrapped app</h3>
-    <p>The first time, <strong>right-click the app → Open</strong> (instead of double-clicking). It's the normal macOS prompt for apps outside the App Store; it only happens once.</p>
+    <h3>macOS says it "cannot verify MacWrap is free of malware"</h3>
+    <p>That is expected. MacWrap is not notarized by Apple yet (notarization has a yearly developer fee I will pay once the project grows), so macOS shows this for any app it hasn't scanned. It is not a sign anything is wrong. To open it: <strong>right-click the app → Open</strong>, then click Open in the dialog. If it still won't open, go to <strong>System Settings → Privacy &amp; Security</strong> and click <strong>"Open Anyway"</strong>. You only do this once. If you'd rather verify what's inside, the modified Wine source is public on <a href="https://github.com/WallsRaul/macwrap-wine">GitHub</a>.</p>
+  </div>
+
+  <div class="qa">
+    <h3>The same warning, but for apps I wrap myself</h3>
+    <p>Same thing, and the same fix: right-click → Open the first time. Wrapped apps are signed locally on your Mac (ad-hoc), not notarized, so macOS treats them like any app from outside the App Store.</p>
   </div>
 
   <h2>Support</h2>

@@ -146,8 +146,13 @@
   <h2>Primeros pasos</h2>
 
   <div class="qa">
-    <h3>macOS me avisa al abrir una app envuelta</h3>
-    <p>La primera vez, <strong>clic derecho en la app → Abrir</strong> (en vez de doble clic). Es el aviso normal de macOS para apps fuera de la App Store; solo pasa una vez.</p>
+    <h3>macOS dice que "no pudo verificar que MacWrap no contenga software malicioso"</h3>
+    <p>Es normal. MacWrap aún no está notarizada por Apple (la notarización tiene una cuota anual de desarrollador que pagaré cuando el proyecto crezca), así que macOS muestra esto con cualquier app que no ha escaneado. No es señal de que algo esté mal. Para abrirla: <strong>clic derecho en la app → Abrir</strong> y luego pulsa Abrir en el diálogo. Si aun así no abre, ve a <strong>Ajustes del Sistema → Privacidad y Seguridad</strong> y pulsa <strong>"Abrir de todos modos"</strong>. Solo se hace una vez. Si prefieres verificar qué hay dentro, el código de Wine modificado es público en <a href="https://github.com/WallsRaul/macwrap-wine">GitHub</a>.</p>
+  </div>
+
+  <div class="qa">
+    <h3>El mismo aviso, pero con apps que envuelvo yo</h3>
+    <p>Es lo mismo y se arregla igual: clic derecho → Abrir la primera vez. Las apps envueltas se firman localmente en tu Mac (ad-hoc), no están notarizadas, así que macOS las trata como cualquier app de fuera de la App Store.</p>
   </div>
 
   <h2>Soporte</h2>
