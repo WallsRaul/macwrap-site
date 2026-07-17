@@ -28,22 +28,22 @@
 <nav><a href="../../"><img src="../../macwrap-logo-256.png" alt="MacWrap"> MacWrap</a></nav>
 <h1>Cómo ejecutar programas de Windows en Mac</h1>
 <p class="meta">Actualizado 2026 · Apple Silicon (M1/M2/M3/M4) e Intel</p>
-<p>Si te pasaste a Mac pero necesitas un programa que solo existe para Windows —un software de contabilidad, una plataforma de trading, una herramienta antigua o un juego sin versión Mac— tienes varias opciones. Esta guía las explica claras, por qué <strong>Boot Camp ya no funciona en Apple Silicon</strong>, y cómo convertir cualquier <code>.exe</code> de Windows en una <strong>app nativa de Mac</strong> que abres con doble clic.</p>
+<p>Si te pasaste a Mac pero necesitas un programa que solo existe para Windows, un software de contabilidad, una plataforma de trading, una herramienta antigua o un juego sin versión Mac, tienes varias opciones. Esta guía las explica claras, por qué <strong>Boot Camp ya no funciona en Apple Silicon</strong>, y cómo convertir cualquier <code>.exe</code> de Windows en una <strong>app nativa de Mac</strong> que abres con doble clic.</p>
 <h2>Por qué cambió todo con Apple Silicon</h2>
-<p>Al pasar los Mac a chips Apple, <strong>desapareció Boot Camp</strong>: ya no puedes instalar Windows junto a macOS en los M-series. Pero Apple lanzó el <strong>Game Porting Toolkit</strong>, que traduce los gráficos DirectX de Windows a Metal. Junto a la capa de compatibilidad <strong>Wine</strong>, hizo posible ejecutar muchísimo software de Windows directamente en macOS — sin máquina virtual ni licencia de Windows.</p>
+<p>Al pasar los Mac a chips Apple, <strong>desapareció Boot Camp</strong>: ya no puedes instalar Windows junto a macOS en los M-series. Pero Apple lanzó el <strong>Game Porting Toolkit</strong>, que traduce los gráficos DirectX de Windows a Metal. Junto a la capa de compatibilidad <strong>Wine</strong>, hizo posible ejecutar muchísimo software de Windows directamente en macOS, sin máquina virtual ni licencia de Windows.</p>
 <h2>Las 4 formas de usar software de Windows en Mac</h2>
 <ul>
-<li><strong>Boot Camp</strong> — muerto en los Mac modernos (solo Intel).</li>
-<li><strong>Máquina virtual (Parallels)</strong> — potente pero pesada y de pago (~100€/año + Windows). Para usar un programa, ejecutas todo Windows.</li>
-<li><strong>Capa de compatibilidad (Wine / CrossOver)</strong> — ejecuta apps individuales de Windows traduciendo sus llamadas a macOS. Ligero. Wine es gratis (técnico); CrossOver de pago.</li>
-<li><strong>MacWrap</strong> — sobre Wine parcheado + Game Porting Toolkit: <strong>arrastras un <code>.exe</code> y obtienes una <code>.app</code> nativa</strong> con su icono, doble clic, sin terminal. Beta gratis.</li>
+<li><strong>Boot Camp</strong>, muerto en los Mac modernos (solo Intel).</li>
+<li><strong>Máquina virtual (Parallels)</strong>, potente pero pesada y de pago (~100€/año + Windows). Para usar un programa, ejecutas todo Windows.</li>
+<li><strong>Capa de compatibilidad (Wine / CrossOver)</strong>, ejecuta apps individuales de Windows traduciendo sus llamadas a macOS. Ligero. Wine es gratis (técnico); CrossOver de pago.</li>
+<li><strong>MacWrap</strong>, sobre Wine parcheado + Game Porting Toolkit: <strong>arrastras un <code>.exe</code> y obtienes una <code>.app</code> nativa</strong> con su icono, doble clic, sin terminal. Beta gratis.</li>
 </ul>
 <a class="cta" href="../#beta">↓ Descargar MacWrap (beta gratis)</a>
 <h2>¿Qué programas funcionan?</h2>
 <p>Ninguna capa ejecuta <em>todo</em>. Lo honesto en Apple Silicon:</p>
 <ul>
 <li><strong>Funcionan perfecto:</strong> apps Win32 clásicas, .NET Framework, herramientas GDI, la mayoría del software profesional heredado.</li>
-<li><strong>Con receta:</strong> apps que necesitan runtimes (.NET, bases Access, editores Direct2D) — automático.</li>
+<li><strong>Con receta:</strong> apps que necesitan runtimes (.NET, bases Access, editores Direct2D), automático.</li>
 <li><strong>Todavía no:</strong> WinRT moderno, drivers de kernel y juegos con anti-cheat online (límite real de toda capa de compatibilidad).</li>
 </ul>
 <h2>Paso a paso</h2>

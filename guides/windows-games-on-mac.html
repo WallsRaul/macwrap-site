@@ -28,17 +28,17 @@
 <nav><a href="../"><img src="../macwrap-logo-256.png" alt="MacWrap"> MacWrap</a></nav>
 <h1>How to Play Windows Games on Mac (Apple Silicon)</h1>
 <p class="meta">Updated 2026 · M1/M2/M3/M4 Macs</p>
-<p>Mac gaming changed when Apple released the <strong>Game Porting Toolkit</strong>, which translates Windows <strong>DirectX 11 and 12</strong> to Apple's Metal graphics. Combined with Wine, it lets Apple Silicon Macs run many Windows-only games that never got a Mac port — including AAA titles. This guide covers what works, what doesn't, and how to turn a game into a Mac app you can double-click.</p>
+<p>Mac gaming changed when Apple released the <strong>Game Porting Toolkit</strong>, which translates Windows <strong>DirectX 11 and 12</strong> to Apple's Metal graphics. Combined with Wine, it lets Apple Silicon Macs run many Windows-only games that never got a Mac port, including AAA titles. This guide covers what works, what doesn't, and how to turn a game into a Mac app you can double-click.</p>
 <h2>How games run on Apple Silicon now</h2>
-<p>Apple's <strong>D3DMetal</strong> layer converts DirectX 12 draw calls to Metal in real time on the Mac GPU. A Windows game's <code>.exe</code> runs through Wine, its graphics go through D3DMetal, and you see the game render natively — no Windows, no Boot Camp.</p>
+<p>Apple's <strong>D3DMetal</strong> layer converts DirectX 12 draw calls to Metal in real time on the Mac GPU. A Windows game's <code>.exe</code> runs through Wine, its graphics go through D3DMetal, and you see the game render natively, no Windows, no Boot Camp.</p>
 <h2>Which Windows games work on Mac?</h2>
 <ul>
-<li><strong>Works well:</strong> single-player DirectX 11/12 games without anti-cheat — The Witcher 3, Control, A Plague Tale, many GOG DRM-free titles.</li>
+<li><strong>Works well:</strong> single-player DirectX 11/12 games without anti-cheat, The Witcher 3, Control, A Plague Tale, many GOG DRM-free titles.</li>
 <li><strong>Risky:</strong> games with online anti-cheat in single-player (sometimes work offline).</li>
-<li><strong>Doesn't work:</strong> online games with kernel anti-cheat (Fortnite, Valorant, PUBG) — a technical limit of compatibility layers, not a fixable setting. Also games that require AVX2.</li>
+<li><strong>Doesn't work:</strong> online games with kernel anti-cheat (Fortnite, Valorant, PUBG), a technical limit of compatibility layers, not a fixable setting. Also games that require AVX2.</li>
 </ul>
 <h2>Turn a Windows game into a Mac app</h2>
-<p><a href="../">MacWrap</a> wraps a game's <code>.exe</code> into a native <code>.app</code> with the game's icon, using the Game Porting Toolkit and D3DMetal automatically. You double-click to play — no command line.</p>
+<p><a href="../">MacWrap</a> wraps a game's <code>.exe</code> into a native <code>.app</code> with the game's icon, using the Game Porting Toolkit and D3DMetal automatically. You double-click to play, no command line.</p>
 <ol>
 <li>Download <a href="../#beta">MacWrap</a> (Apple Silicon required).</li>
 <li>Install your game (e.g. a GOG DRM-free installer) and point MacWrap at the game's .exe.</li>
@@ -46,7 +46,7 @@
 </ol>
 <h2>FAQ</h2>
 <h3>Are free games supported?</h3>
-<p>Yes — DRM-free free games from GOG and free weekly games from the Epic Games Store work the same way. Both DirectX games and Electron/WebGL games are supported.</p>
+<p>Yes, DRM-free free games from GOG and free weekly games from the Epic Games Store work the same way. Both DirectX games and Electron/WebGL games are supported.</p>
 <h3>Why won't my online game launch?</h3>
 <p>Kernel-level anti-cheat hooks into Windows internals that don't exist under a compatibility layer. There is no workaround; this is the one hard limit of Mac gaming via translation.</p>
 <a class="cta" href="../#beta">↓ Download MacWrap (free beta)</a>
