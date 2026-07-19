@@ -15,7 +15,7 @@
   <img src="https://img.shields.io/badge/Apple%20Silicon-M1–M4-22c55e">
   <img src="https://img.shields.io/github/v/release/WallsRaul/macwrap-site?label=version&color=5babec">
   <img src="https://img.shields.io/badge/engine-Wine%2011%20·%20LGPL-8b7fd9">
-  <img src="https://img.shields.io/badge/beta-free-f59e0b">
+  <img src="https://img.shields.io/badge/beta-free%20until%20further%20notice-22c55e">
 </p>
 
 <p align="center">
@@ -40,10 +40,10 @@ games) that we maintain ourselves — so things work that other layers can't.
 <p align="center">
   <img src="docs/screenshot-wrap.png" width="420" alt="Drop a .exe, get a native .app">
   &nbsp;
-  <img src="docs/screenshot-epic.png" width="420" alt="Epic Games library on Mac — honest compatibility flags">
+  <img src="docs/screenshot-analysis.png" width="420" alt="Compatibility analysis before you commit">
 </p>
 
-<p align="center"><i>Left: drop a <code>.exe</code> → get a native <code>.app</code>.&nbsp;&nbsp;Right: your Epic library on Mac, with honest "not playable" flags. <sub>(UI shown in Spanish — the app is bilingual EN/ES.)</sub></i></p>
+<p align="center"><i>Left: drop a <code>.exe</code> or an installer.&nbsp;&nbsp;Right: MacWrap analyzes it and tells you what to expect <b>before</b> wrapping it.</i></p>
 
 ## 🚀 Features
 
@@ -66,7 +66,8 @@ No compatibility layer runs *everything*, and anyone who says otherwise is lying
 | 🔴 **Not yet** | Modern WinRT · kernel drivers · online anti-cheat (Fortnite, etc.) |
 
 **Already running:** The Witcher 3 · legacy .NET/Access business suites · Sierra Chart · AmiBroker ·
-Notepad++ · 7-Zip · VLC · IrfanView · EmEditor · WinMerge · MobaXterm · WinSCP · HeidiSQL — and more.
+Notepad++ · 7-Zip · VLC · IrfanView · EmEditor · WinMerge · MobaXterm · WinSCP · HeidiSQL ·
+TallyPrime · Warframe · Resident Evil 4 · Need for Speed Most Wanted — and more.
 
 ## ⬇ Download & Install
 
@@ -74,6 +75,10 @@ Notepad++ · 7-Zip · VLC · IrfanView · EmEditor · WinMerge · MobaXterm · W
 2. Open the `.dmg`, drag **MacWrap** to Applications.
 3. First launch: **right-click → Open** (one-time macOS prompt for unsigned apps).
 4. Drag a Windows `.exe` onto it. Done.
+
+> [!TIP]
+> MacWrap is **free during the beta, until further notice** — every feature unlocked, nothing to
+> activate and nothing to pay.
 
 > [!NOTE]
 > MacWrap needs **Rosetta 2** (the engine is x86_64). The app detects and installs it automatically
