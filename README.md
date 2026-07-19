@@ -6,7 +6,7 @@
 
 <p align="center">
   <b>Run your Windows apps as native Mac apps.</b><br>
-  Drag a Windows <code>.exe</code> onto MacWrap and get a real <code>.app</code> back — its own icon,<br>
+  Drag a Windows <code>.exe</code> onto MacWrap and get a real <code>.app</code> back with its own icon,<br>
   double-click to launch, no terminal, no setup. You'd never know there's Windows underneath.
 </p>
 
@@ -29,11 +29,11 @@
 ## ✨ What is MacWrap?
 
 MacWrap turns any Windows program into a **native-feeling Mac app**. No virtual machine, no Windows
-desktop, no per-app guesswork — each app becomes its own `.app` bundle with the real icon, and you
+desktop, no per-app guesswork. Each app becomes its own `.app` bundle with the real icon, and you
 double-click to run it.
 
 It runs on a **patched, hardware-accelerated build of Wine** (plus Apple's Game Porting Toolkit for
-games) that we maintain ourselves — so things work that other layers can't.
+games) that we maintain ourselves, so things work that other layers can't.
 
 ## 🖼 Screenshots
 
@@ -47,27 +47,27 @@ games) that we maintain ourselves — so things work that other layers can't.
 
 ## 🚀 Features
 
-- **Drag & drop** — drop any `.exe` or installer, get a native `.app`.
-- **Honest compatibility** — MacWrap analyzes each app and tells you which tier it lands in, *before* you commit.
-- **Games** — wrap DX11/DX12 titles via Apple's Game Porting Toolkit + D3DMetal.
-- **Epic Games library** — connect your Epic account and bring your games (and the free weekly giveaways) to Mac.
-- **Real native bundle** — original icon, double-click, no terminal.
-- **Bilingual** — English & Spanish, auto by system language.
+- **Drag & drop:** drop any `.exe` or installer, get a native `.app`.
+- **Honest compatibility:** MacWrap analyzes each app and tells you which tier it lands in, *before* you commit.
+- **Games:** wrap DX11/DX12 titles via Apple's Game Porting Toolkit + D3DMetal.
+- **Epic Games library:** connect your Epic account and bring your games (and the free weekly giveaways) to Mac.
+- **Real native bundle:** original icon, double-click, no terminal.
+- **Bilingual:** English & Spanish, auto by system language.
 
-## 📊 Compatibility — honest by design
+## 📊 Compatibility, honest by design
 
 No compatibility layer runs *everything*, and anyone who says otherwise is lying. MacWrap tells you up front:
 
 | Tier | What runs |
 |------|-----------|
 | 🟢 **Runs great** | Win32 / .NET Framework apps · GDI/GDI+ interfaces · most legacy professional software |
-| 🔵 **Runs with a recipe** | Needs runtimes/tweaks we apply automatically — .NET, Access DB, Direct2D editors |
+| 🔵 **Runs with a recipe** | Needs runtimes/tweaks we apply automatically: .NET, Access DB, Direct2D editors |
 | 🟠 **Partial** | Heavy Direct2D/Direct3D edge cases; some features may be limited |
 | 🔴 **Not yet** | Modern WinRT · kernel drivers · online anti-cheat (Fortnite, etc.) |
 
 **Already running:** The Witcher 3 · legacy .NET/Access business suites · Sierra Chart · AmiBroker ·
 Notepad++ · 7-Zip · VLC · IrfanView · EmEditor · WinMerge · MobaXterm · WinSCP · HeidiSQL ·
-TallyPrime · Warframe · Resident Evil 4 · Need for Speed Most Wanted — and more.
+TallyPrime · Warframe · Resident Evil 4 · Need for Speed Most Wanted, and more.
 
 ## ⬇ Download & Install
 
@@ -77,23 +77,23 @@ TallyPrime · Warframe · Resident Evil 4 · Need for Speed Most Wanted — and 
 4. Drag a Windows `.exe` onto it. Done.
 
 > [!TIP]
-> MacWrap is **free during the beta, until further notice** — every feature unlocked, nothing to
+> MacWrap is **free during the beta, until further notice.** Every feature unlocked, nothing to
 > activate and nothing to pay.
 
 > [!NOTE]
 > MacWrap needs **Rosetta 2** (the engine is x86_64). The app detects and installs it automatically
-> with one click on first run — nothing technical on your side.
+> with one click on first run, nothing technical on your side.
 
 ## ❤️ Support the project
 
-MacWrap is free and built by **one developer**. Every recipe — making a stubborn Windows app finally
-run on Mac — is hours of deep work. If MacWrap saved you from buying a Windows PC or a pricey VM, a
+MacWrap is free and built by **one developer**. Every recipe, making a stubborn Windows app finally
+run on Mac, is hours of deep work. If MacWrap saved you from buying a Windows PC or a pricey VM, a
 small donation keeps it going:
 
 - [**♥ Donate** (card / Apple Pay)](https://macwrap.lemonsqueezy.com/checkout/buy/675b04d0-2520-4bc6-8df1-1e3cc1edc191)
 - [Donate with **PayPal**](https://www.paypal.me/WallsRaul)
 
-100% optional — MacWrap stays free either way. 🙏
+100% optional. MacWrap stays free either way. 🙏
 
 ## 🛠 How it works
 
